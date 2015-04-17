@@ -1,0 +1,30 @@
+{
+  "name": "draw",
+  "version": "1.0.0",
+  "description": "A view layer",
+  "main": "draw.js",
+  "dependencies": {
+    "virtual-dom": "2.0.1",
+    "gulp": "^3.7.0",    
+    "browserify": "^5.12.1",
+    "gulp-streamify": "0.0.5",
+    "gulp-concat": "^2.2.0",
+    "vinyl-source-stream": "^1.0.0",
+    "gulp-uglify": "^0.3.0"
+  },
+  "devDependencies": {
+    },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mtmacdonald/draw"
+  },
+  "author": "Mark Macdonald",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mtmacdonald/draw/issues"
+  },
+  "homepage": "https://github.com/mtmacdonald/draw"
+}
