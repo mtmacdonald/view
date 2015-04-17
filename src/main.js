@@ -23,32 +23,25 @@ function render(count)  {
   View engine uses virtual-dom to patch the DOM
 */
 
-var initialized = false;
-var tree;
-var dom;
+function Draw () {
 
-function draw(count) {
-  if (!initialized) {
-    tree = render(count);
-    dom = createElement(tree);
-    document.getElementById('dynamic-content').appendChild(dom);
-    initialized = true;
-  } else {
-    var newTree = render(count);
-    var patches = diff(tree, newTree);
-    patch(dom, patches);
-    tree = newTree;
+  var initialized = false;
+  var tree;
+  var dom;
+
+  this.draw = function (count) {
+    if (!initialized) {
+      tree = render(count);
+      dom = createElement(tree);
+      document.getElementById('dynamic-content').appendChild(dom);
+      initialized = true;
+    } else {
+      var newTree = render(count);
+      var patches = diff(tree, newTree);
+      patch(dom, patches);
+      tree = newTree;
+    }
   }
 }
 
-/*
-  application logic
-*/
-
-var count = 0;
-draw(count);
-
-setInterval(function () {
-      count++;
-      draw(count);
-}, 1000);
+module.exports = Draw;
