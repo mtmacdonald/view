@@ -6,13 +6,27 @@ var count = 0;
 
 var vdom = new draw();
 
+var selector = 'div';
+
+var props = {
+    style: {
+        textAlign: 'center',
+        lineHeight: (100) + 'px',
+        border: '1px solid red',
+        width: (100) + 'px',
+        height: (100) + 'px'
+    }
+};
+
 $( document ).ready(function() {
 
-	vdom.draw(count);
+	var tree = vdom.render(selector, props, [String(count)]);
+	vdom.draw(tree);
 
 	setInterval(function () {
 	      count++;
-	      vdom.draw(count);
+	      var tree = vdom.render(selector, props, [String(count)]);
+	      vdom.draw(tree);
 	}, 1000);
 
 });
