@@ -30,12 +30,13 @@ function Draw () {
   var dom;
 
   this.h = function () {
-    return h;
+    return h();
   }
 
   this.draw = function (count) {
     if (!initialized) {
       tree = render(count);
+      console.log(tree);
       dom = createElement(tree);
       document.getElementById('dynamic-content').appendChild(dom);
       initialized = true;
