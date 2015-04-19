@@ -1649,22 +1649,6 @@ var patch = require('virtual-dom/patch');
 var createElement = require('virtual-dom/create-element');
 
 /*
-  View uses virtual-hypertext format
-*/
-
-function render(count)  {
-    return h('div', {
-        style: {
-            textAlign: 'center',
-            lineHeight: (100 + count) + 'px',
-            border: '1px solid red',
-            width: (100 + count) + 'px',
-            height: (100 + count) + 'px'
-        }
-    }, [String(count)]);
-}
-
-/*
   View engine uses virtual-dom to patch the DOM
 */
 
@@ -1674,19 +1658,30 @@ function Draw () {
   var tree;
   var dom;
 
-  this.h = function () {
-    return h();
+  var props = {
+        style: {
+            textAlign: 'center',
+            lineHeight: (100) + 'px',
+            border: '1px solid red',
+            width: (100) + 'px',
+            height: (100) + 'px'
+        }
+    };
+
+  var selector = 'div';
+
+  this.render = function (selector, properties, children) {
+    return h(selector, properties, children);
   }
 
   this.draw = function (count) {
     if (!initialized) {
-      tree = render(count);
-      console.log(tree);
+      tree = this.render(selector, props, [String(count)]);
       dom = createElement(tree);
       document.getElementById('dynamic-content').appendChild(dom);
       initialized = true;
     } else {
-      var newTree = render(count);
+      var newTree = this.render(selector, props, [String(count)]);
       var patches = diff(tree, newTree);
       patch(dom, patches);
       tree = newTree;
