@@ -29,6 +29,10 @@ function Draw () {
   var tree;
   var dom;
 
+  this.h = function () {
+    return h;
+  }
+
   this.draw = function (count) {
     if (!initialized) {
       tree = render(count);

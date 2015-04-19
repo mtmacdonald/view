@@ -4,13 +4,15 @@
 
 var count = 0;
 
+var vdom = new draw();
+
 $( document ).ready(function() {
 
-	draw(count);
+	vdom.draw(count);
 
 	setInterval(function () {
 	      count++;
-	      draw(count);
+	      vdom.draw(count);
 	}, 1000);
 
 });
