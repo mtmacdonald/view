@@ -3,7 +3,7 @@ var view = new View();
 
 var elements = ['Fish', 'Mangoes', 'Nougat'];
 
-function renderList () {
+function list () {
 	var items = [];
 	elements.forEach( function (element) {
     	items.push(view.h('p', element));
@@ -11,9 +11,9 @@ function renderList () {
 	return view.h('div', items);
 }
 
-function render () {
+function redraw () {
 	var vdom= view.h('div', [
-		renderList(),
+		list(),
     	view.h('input#value', { type: 'text' }),
 		view.h('button#add', 'Add'),
 	]);
@@ -22,10 +22,10 @@ function render () {
 
 function clickHandler () {
 	elements.push($('#value').val());
-	render();
+	redraw();
 }
 
 $( document ).ready(function() {
-	render();
+	redraw();
 	$('#add').on('click', clickHandler);
 });
