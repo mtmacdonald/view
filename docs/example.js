@@ -6,27 +6,27 @@ var count = 0;
 
 var view = new View();
 
-var selector = 'div';
-
-var props = {
-    style: {
-        textAlign: 'center',
-        lineHeight: (100) + 'px',
-        border: '1px solid red',
-        width: (100) + 'px',
-        height: (100) + 'px'
-    }
-};
+function render (count) {
+	return view.h('div', { 
+		style: {
+        	textAlign: 'center',
+        	lineHeight: (100) + 'px',
+        	border: '1px solid red',
+        	width: (100) + 'px',
+        	height: (100) + 'px'
+        }
+    }, [String(count)]);
+}
 
 $( document ).ready(function() {
 
-	var tree = view.h(selector, props, [String(count)]);
-	view.render(tree);
+	var vdom = render(count);
+	view.render(vdom);
 
 	setInterval(function () {
-	      count++;
-	      var tree = view.h(selector, props, [String(count)]);
-	      view.render(tree);
+	    count++;
+	    var vdom = render(count);
+	    view.render(vdom);
 	}, 1000);
 
 });
