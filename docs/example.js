@@ -20,13 +20,13 @@ var props = {
 
 $( document ).ready(function() {
 
-	var tree = view.render(selector, props, [String(count)]);
-	view.draw(tree);
+	var tree = view.h(selector, props, [String(count)]);
+	view.render(tree);
 
 	setInterval(function () {
 	      count++;
-	      var tree = view.render(selector, props, [String(count)]);
-	      view.draw(tree);
+	      var tree = view.h(selector, props, [String(count)]);
+	      view.render(tree);
 	}, 1000);
 
 });

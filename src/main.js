@@ -9,11 +9,11 @@ function View () {
   var tree;
   var dom;
 
-  this.render = function (selector, properties, children) {
+  this.h = function (selector, properties, children) {
     return h(selector, properties, children);
   }
 
-  this.draw = function (latestTree) {
+  this.render = function (latestTree) {
     if (!initialized) {
       tree = latestTree;
       dom = createElement(tree);
