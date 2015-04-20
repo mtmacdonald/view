@@ -1,9 +1,15 @@
 var view = new View();
 
-function Todo ()
+/*
+	The Todo component
+*/
+
+function Todo (parent)
 {
+	var parent = parent;
 	var self = this;
-	var widget = new Widget();
+
+	var widget = new Widget(this);
 
 	var elements = ['Fish', 'Mangoes', 'Nougat'];
 
@@ -15,7 +21,7 @@ function Todo ()
 		return view.h('div', items);
 	}
 
-	this.redraw = function () {
+	this.draw = function () {
 		var vdom= view.h('div', [
 			view.h('p#plugin'),
 			widget.draw('Example app'), //external component
@@ -23,29 +29,30 @@ function Todo ()
 	    	view.h('input#value', { type: 'text' } ),
 			view.h('button#add', { onclick: clickHandler }, 'Add')
 		]);
-		view.render(vdom);
-		$('#plugin').foo(); //call jQuery plugin
+		return vdom;
 	}
 
 	function clickHandler () {
 		elements.push($('#value').val());
-		self.redraw();
+		parent.draw();
 	}
 }
 
 /*
-	A reusable component
+	A reusable Widget component
 */
 
-function Widget ()
+function Widget (parent)
 {
+	var parent = parent;
+
 	this.draw = function (message) {
 		return view.h('p.w-message.w-information', message);
 	}
 }
 
 /*
-	A jQuery plugin
+	A jQuery plugin (e.g. to show integration with lagacy code)
 */
 
 (function($) {
@@ -56,7 +63,23 @@ function Widget ()
     }
 }(jQuery));
 
+/*
+	The page controller
+*/
+
+function Page ()
+{
+	
+	var todo = new Todo(this);
+
+	this.draw = function () {
+		var vdom = todo.draw();
+		view.render(vdom);
+		$('#plugin').foo(); //call jQuery plugin
+	}
+}
+
 $(document).ready( function() {
-	var todo = new Todo();
-	todo.redraw();
+	var page = new Page();
+	page.draw();
 });
