@@ -4,7 +4,7 @@
 
 var count = 0;
 
-var vdom = new draw();
+var vdom = new View();
 
 var selector = 'div';
 

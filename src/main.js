@@ -3,7 +3,7 @@ var diff = require('virtual-dom/diff');
 var patch = require('virtual-dom/patch');
 var createElement = require('virtual-dom/create-element');
 
-function Draw () {
+function View () {
 
   var initialized = false;
   var tree;
@@ -28,4 +28,4 @@ function Draw () {
   }
 }
 
-module.exports = Draw;
+module.exports = View;

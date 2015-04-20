@@ -15,7 +15,7 @@
   "devDependencies": {
     },
   "scripts": {
-    "dist": "browserify src/main.js -s draw -o draw.js",
+    "dist": "browserify src/main.js -s View -o view.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
