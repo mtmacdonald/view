@@ -4,7 +4,7 @@
 
 var count = 0;
 
-var vdom = new View();
+var view = new View();
 
 var selector = 'div';
 
@@ -20,13 +20,13 @@ var props = {
 
 $( document ).ready(function() {
 
-	var tree = vdom.render(selector, props, [String(count)]);
-	vdom.draw(tree);
+	var tree = view.render(selector, props, [String(count)]);
+	view.draw(tree);
 
 	setInterval(function () {
 	      count++;
-	      var tree = vdom.render(selector, props, [String(count)]);
-	      vdom.draw(tree);
+	      var tree = view.render(selector, props, [String(count)]);
+	      view.draw(tree);
 	}, 1000);
 
 });
