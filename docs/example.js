@@ -7,7 +7,6 @@ var view = new View();
 function Todo (parent)
 {
 	var parent = parent;
-	var self = this;
 
 	var widget = new Widget(this);
 
@@ -69,7 +68,6 @@ function Widget (parent)
 
 function Page ()
 {
-	
 	var todo = new Todo(this);
 
 	this.draw = function () {
