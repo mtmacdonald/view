@@ -1,31 +1,34 @@
+function Todo ()
+{
+	var self = this;
+	var view = new View();
 
-var view = new View();
+	var elements = ['Fish', 'Mangoes', 'Nougat'];
 
-var elements = ['Fish', 'Mangoes', 'Nougat'];
+	function list () {
+		var items = [];
+		elements.forEach( function (element) {
+	    	items.push(view.h('p', element));
+		});
+		return view.h('div', items);
+	}
 
-function list () {
-	var items = [];
-	elements.forEach( function (element) {
-    	items.push(view.h('p', element));
-	});
-	return view.h('div', items);
+	this.redraw = function () {
+		var vdom= view.h('div', [
+			list(),
+	    	view.h('input#value', { type: 'text' } ),
+			view.h('button#add', { onclick: clickHandler }, 'Add'),
+		]);
+		view.render(vdom);
+	}
+
+	function clickHandler () {
+		elements.push($('#value').val());
+		self.redraw();
+	}
 }
 
-function redraw () {
-	var vdom= view.h('div', [
-		list(),
-    	view.h('input#value', { type: 'text' }),
-		view.h('button#add', 'Add'),
-	]);
-	view.render(vdom);
-}
-
-function clickHandler () {
-	elements.push($('#value').val());
-	redraw();
-}
-
-$( document ).ready(function() {
-	redraw();
-	$('#add').on('click', clickHandler);
+$(document).ready( function() {
+	var todo = new Todo();
+	todo.redraw();
 });
